@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Climate Risk and Economic Loss Prediction</title>
+
+<style>
+body{
+    font-family:Arial,Helvetica,sans-serif;
+    background:#f4f8fb;
+}
+
+.container{
+    width:600px;
+    margin:30px auto;
+    background:white;
+    padding:25px;
+    border-radius:10px;
+    box-shadow:0 0 10px gray;
+}
+
+h2{
+    text-align:center;
+    color:#0066cc;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:8px 0;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    cursor:pointer;
+    font-size:18px;
+}
+
+button:hover{
+    background:#004d99;
+}
+
+#result{
+    margin-top:20px;
+    font-size:22px;
+    text-align:center;
+    color:green;
+    font-weight:bold;
+}
+</style>
+
+</head>
+<body>
+
+<div class="container">
+
+<h2>Climate Risk and Economic Loss Prediction</h2>
+<h3>Enter climate risk indicators to predict economic losses</h3>
+
+<input type="number" id="cri_rank" placeholder="CRI Rank">
+
+<input type="number" id="cri_score" placeholder="CRI Score">
+
+<input type="number" id="fatalities100_rank" placeholder="Fatalities Per 100K Rank">
+
+<input type="number" id="fatalities100_total" placeholder="Fatalities Per 100K Total">
+
+<input type="number" id="fatalities_rank" placeholder="Fatalities Rank">
+
+<input type="number" id="fatalities_total" placeholder="Fatalities Total">
+
+<input type="number" id="gdp_rank" placeholder="Losses Per GDP Rank">
+
+<input type="number" id="gdp_total" placeholder="Losses Per GDP Total">
+
+<input type="number" id="usd_rank" placeholder="Losses USD PPP Rank">
+
+<button onclick="predict()">Predict</button>
+
+<div id="result"></div>
+
+</div>
+
+<script>
+
+function predict(){
+
+let cri_rank=parseFloat(document.getElementById("cri_rank").value)||0;
+let cri_score=parseFloat(document.getElementById("cri_score").value)||0;
+let f100_rank=parseFloat(document.getElementById("fatalities100_rank").value)||0;
+let f100_total=parseFloat(document.getElementById("fatalities100_total").value)||0;
+let fatalities_rank=parseFloat(document.getElementById("fatalities_rank").value)||0;
+let fatalities_total=parseFloat(document.getElementById("fatalities_total").value)||0;
+let gdp_rank=parseFloat(document.getElementById("gdp_rank").value)||0;
+let gdp_total=parseFloat(document.getElementById("gdp_total").value)||0;
+let usd_rank=parseFloat(document.getElementById("usd_rank").value)||0;
+
+/* Sample Formula */
+
+let prediction=
+
+(cri_score*120)+
+(fatalities_total*2)+
+(gdp_total*180)-
+(cri_rank*5);
+
+document.getElementById("result").innerHTML=
+"Predicted Economic Loss : <br><br><b>"+prediction.toFixed(2)+" Million USD</b>";
+
+}
+
+</script>
+
+</body>
+</html>
